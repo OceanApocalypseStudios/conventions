@@ -34,7 +34,17 @@ All you need to do is add a dot (`.`) to the start of the filename.
 ----
 
 ## `this.`
-- Do **not** qualify ANY type of access (properties, fields, methods, etc) with `this` (`capacity` instead of `this.capacity`)
+- Do **not** qualify ANY type of access (properties, fields, methods, events, etc) with `this`
+
+```c#
+// Prefer:
+capacity = 1;
+DoAction();
+
+// Over:
+this.capacity = 1;
+this.DoAction();
+```
 
 ----
 
@@ -47,6 +57,8 @@ string data = "Hello"; // instead of String
 
 - Prefer framework type (`System.Int32`, `System.String` instead of `int`, `string`) for member access expressions
 ```c#
+using System;
+
 var value = Int32.MaxValue; // instead of int.MaxValue
 var emptyString = String.Empty; // instead of string.Empty
 ```
@@ -54,7 +66,7 @@ var emptyString = String.Empty; // instead of string.Empty
 ----
 
 ## `var`
-- Indifferent, although `var` is prefered when the type is apparent.
+- Indifferent, although explicit type is prefered over `var` when the type is apparent.
 - Prefer using `<type> someVar = new()` instead of `var someVar = new <type>()`
 ```c#
 // Prefer:

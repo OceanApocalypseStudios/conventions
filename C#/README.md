@@ -7,6 +7,13 @@ List of C# conventions used at OceanApocalypseStudios.
 
 ----
 
+## .editorconfig
+In this very same directory, you'll find a ready-for-use `.editorconfig` file.
+
+All you need to do is add a dot (`.`) to the start of the filename.
+
+----
+
 ## Naming
 | Element                          | Naming Convention                                                                | Example
 | -------------------------------- | -------------------------------------------------------------------------------- | -------

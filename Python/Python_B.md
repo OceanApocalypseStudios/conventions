@@ -10,61 +10,13 @@ List of Python conventions used at OceanApocalypseStudios.
 ## Naming
 | Element                          | Naming Convention                                                                | Example
 | -------------------------------- | -------------------------------------------------------------------------------- | -------
-| Classes                          | [PascalCase](https://wiki.c2.com/?PascalCase)                                    | `class MyClass { }`
-| Async Methods                    | PascalCase With `Async` suffix (suffix not mandatory on async-heavy logic)       | `async Task MyMethodAsync { }`
-| Methods, Events and Delegates    | PascalCase                                                                       | `void HelloWorld() { }`
-| Properties                       | PascalCase                                                                       | `string MyProperty { get; set; }`
-| Type parameters / Generics       | PascalCase With `T` prefix (or just `T`)                                         | `void MyMethod<TMyParam>() { }`
-| Constants                        | [CONSTANT_CASE](https://stringcase.org/cases/constant/)                          | `const int MY_CONSTANT = 1;`
-| Fields, Variables and Parameters | [camelCase](https://en.wikipedia.org/wiki/Camel_case)                            | `int myInteger;`
-| Namespaces                       | PascalCase (never file-scoped, always block-scoped)                              | `namespace MyProject.MyNamespace { }`
-| Attributes (inheriting from one) | PascalCase With Optional `Attribute` suffix                                      | `class MyAttribute : Attribute`
-| Filenames (optional)             | PascalCase (if C#, asset or configuration file)                                  | `MyAwesomeFile.cs` or `MyImage.png` or `MyConfig.json` or `not_a_csharp_file.py`
-
-----
-
-## `this.`
-- Do **not** qualify ANY type of access (properties, fields, methods, events, etc) with `this`
-
-```c#
-// Prefer:
-capacity = 1;
-DoAction();
-
-// Over:
-this.capacity = 1;
-this.DoAction();
-```
-
-----
-
-## Predefined types
-- Prefer predefined type (`int`, `string` instead of `System.Int32`, `System.String`) for locals, parameters and members
-```c#
-int capacity = 0; // instead of Int32
-string data = "Hello"; // instead of String
-```
-
-- Prefer framework type (`System.Int32`, `System.String` instead of `int`, `string`) for member access expressions
-```c#
-using System;
-
-var value = Int32.MaxValue; // instead of int.MaxValue
-var emptyString = String.Empty; // instead of string.Empty
-```
-
-----
-
-## `var`
-- Indifferent, although explicit type is prefered over `var` when the type is apparent.
-- Prefer using `<type> someVar = new()` instead of `var someVar = new <type>()`
-```c#
-// Prefer:
-XDocument doc = new();
-
-// Over:
-var doc = new XDocument();
-```
+| Classes                          | [PascalCase](https://wiki.c2.com/?PascalCase)                                    | `class MyClass:`
+| Async Methods                    | [snake_case](https://stringcase.org/cases/snake/) With optional `async` suffix       | `async def my_method_async():`
+| Methods and Functions   | snake_case                                                                    | `def hello_world():`
+| Properties                       | [**camelCase**](https://en.wikipedia.org/wiki/Camel_case) or **snake_case**                                                                      | `@property` ... `def myProperty():`
+| Constants                        | [CONSTANT_CASE](https://stringcase.org/cases/constant/)                          | `MY_CONSTANT = 1`
+| Fields, Variables and Parameters | snake_case                            | `my_var = 5`
+| Filenames (optional)             | snake_case (if Python, asset or configuration file)                                  | `my_file.py` or `img.png` or `my_config.json` or `notPython.cs`
 
 ----
 

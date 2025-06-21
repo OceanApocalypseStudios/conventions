@@ -92,5 +92,140 @@ var doc = new XDocument();
 
 ----
 
+## Code Block
+- Braces are prefered, but usually it's indifferent.
+```c#
+// Prefer:
+if (val)
+{
+
+    Console.WriteLine("Hello, World!");
+    
+}
+
+// Over:
+if (val)
+    Console.WriteLine("Hello, World!");
+    
+// but mostly indifferent
+```
+
+- Namespace declarations **ALWAYS** block-scoped, **NEVER** file-scoped.
+```c#
+// Prefer:
+namespace A.B.C
+{ ... }
+
+// Over:
+namespace A.B.C;
+...
+```
+
+- The use of auto properties is indifferent.
+```c#
+public string MyProperty { get; set; }
+
+public string myValue;
+public string MyOther
+{
+
+    get => myValue;
+    set => myValue = value;
+    
+}
+```
+
+- The use of "simple" `using` versus block `using` is indifferent.
+```c#
+using var foo = GetValue();
+DoSomething(foo);
+
+using (var foo = GetValue())
+{ DoSomething(foo); }
+```
+
+- Prefer `System.HashCode` in `GetHashCode` if applicable
+```c#
+// Prefer (requires System.HashCode):
+public override int GetHashCode() => System.HashCode.Combine(a, b, c);
+
+// Over:
+public override int GetHashCode()
+{
+
+    var hashCode = 339610899;
+    var val = -1521134295;
+    hashCode = hashCode * val + a.GetHashCode();
+    hashCode = hashCode * val + b.GetHashCode();
+    hashCode = hashCode * val + c.GetHashCode();
+    return hashCode;
+    
+}
+```
+
+- Prefer method group conversion.
+```c#
+// Prefer:
+Action<object> writeObject = Console.Write;
+
+// Over:
+Action<object> writeObject = obj => Console.Write(obj);
+```
+
+- Do **NOT** prefer top-level statements.
+```c#
+// Prefer:
+using System;
+
+
+internal class Program
+{
+
+    public static void Main(string[] args)
+    {
+    
+        Console.WriteLine("Hello, World!");
+        
+    }
+    
+}
+
+// Over:
+using System;
+Console.WriteLine("Hello, World!"); // what is this? PYTHON?!
+```
+
+- Braces need to breathe.
+```
+// Prefer 1 empty line after each brace:
+public class A
+{
+
+    public int B()
+    {
+    
+        return 0;
+        
+    }
+    
+}
+
+// Over:
+public class A
+{
+    public int B()
+    {
+        return 0;
+    }
+}
+```
+
+----
+
+## Parentheses
+- The use of redundant parentheses for the sake of clarity in arithmetic operators (`*`, `/`, `+`, `%`, `-`, `<<`, `>>`, `&`, `^`, `|`), binary operators (`&&`, `||`, `??`, `or`, `and`), relational operators (`<`, `>`, `==`, `!=`, `<=`, `>=`, `is`, `as`) and others is indifferent.
+
+----
+
 ## TODO
 - [ ] Add more coding conventions

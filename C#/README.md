@@ -10,15 +10,13 @@ List of C# conventions used at OceanApocalypseStudios.
 ## .editorconfig
 In this very same directory, you'll find a ready-for-use `.editorconfig` file.
 
-All you need to do is add a dot (`.`) to the start of the filename.
-
 ----
 
 ## Naming
 | Element                          | Naming Convention                                                                | Example
 | -------------------------------- | -------------------------------------------------------------------------------- | -------
-| Interfaces                       | PascalCase With `I` prefix                                                       | `interface IMyInterface { }`
-| Classes                          | [PascalCase](https://wiki.c2.com/?PascalCase)                                    | `class MyClass { }`
+| Interfaces                       | [PascalCase](https://wiki.c2.com/?PascalCase) With `I` prefix                    | `interface IMyInterface { }`
+| Classes                          | PascalCase                                                                       | `class MyClass { }`
 | Structs                          | PascalCase                                                                       | `struct MyStruct { }`
 | Enums                            | PascalCase                                                                       | `enum MyEnum { }`
 | Async Methods                    | PascalCase With `Async` suffix (suffix not mandatory on async-heavy logic)       | `async Task MyMethodAsync { }`
@@ -27,14 +25,14 @@ All you need to do is add a dot (`.`) to the start of the filename.
 | Type parameters / Generics       | PascalCase With `T` prefix (or just `T`)                                         | `void MyMethod<TMyParam>() { }`
 | Constants                        | [CONSTANT_CASE](https://stringcase.org/cases/constant/)                          | `const int MY_CONSTANT = 1;`
 | Fields, Variables and Parameters | [camelCase](https://en.wikipedia.org/wiki/Camel_case)                            | `int myInteger;`
-| Namespaces                       | PascalCase (never file-scoped, always block-scoped)                              | `namespace MyProject.MyNamespace { }`
+| Namespaces                       | PascalCase                                                                       | `namespace MyProject.MyNamespace { }`
 | Attributes (inheriting from one) | PascalCase With Optional `Attribute` suffix                                      | `class MyAttribute : Attribute`
 | Filenames (optional)             | PascalCase (if C#, asset or configuration file)                                  | `MyAwesomeFile.cs` or `MyImage.png` or `MyConfig.json` or `not_a_csharp_file.py`
 
 ----
 
 ## `this.`
-- Do **not** qualify ANY type of access (properties, fields, methods, events, etc) with `this`
+- Do **not** qualify ANY type of access (properties, fields, methods, events, etc) with `this`, unless absolutely necessary
 
 ```c#
 // Prefer:
@@ -44,6 +42,22 @@ DoAction();
 // Over:
 this.capacity = 1;
 this.DoAction();
+
+// Does not apply when necessary:
+internal class MyClass
+{
+
+    int val = 0;
+    
+    public MyClass(int val)
+    {
+    
+        this.val = val;
+        // necessary or else you'd be assigning local val to local val
+    
+    }
+    
+}    
 ```
 
 ----

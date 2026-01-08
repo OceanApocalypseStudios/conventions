@@ -93,7 +93,7 @@ var doc = new XDocument();
 ----
 
 ## Code Block
-- Braces are prefered, but usually it's indifferent.
+- No braces is prefered when possible.
 ```c#
 // Prefer:
 if (val)
@@ -121,7 +121,7 @@ namespace A.B.C;
 ...
 ```
 
-- The use of auto properties is indifferent.
+- The use of auto properties is recommended.
 ```c#
 public string MyProperty { get; set; }
 
@@ -218,6 +218,16 @@ public class A
         return 0;
     }
 }
+
+// Exceptions to the rule:
+try
+{
+	// no empty lines unless more than one line
+}
+catch (Exception)
+{
+	// same here
+}
 ```
 
 ----
@@ -228,7 +238,7 @@ public class A
 ----
 
 ## Expressions
-- The use of object initializers is indifferent.
+- The use of object initializers is recommended.
 ```c#
 // This:
 Customer c = new()
@@ -243,19 +253,18 @@ Customer c = new();
 c.Age = 21;
 ```
 
-- Avoid collection initializers.
+- Prefer collection initializers.
 ```c#
 // Prefer:
+List<int> list = new() { 1, 2, 3 };
+// and
+List<int> list = [1, 2, 3]; // is this Python now?!
+
+// Over:
 List<int> list = new();
 list.Add(1);
 list.Add(2);
 list.Add(3);
-
-// Over:
-List<int> list = new() { 1, 2, 3 };
-
-// And over:
-List<int> list = [1, 2, 3]; // is this Python now?!
 ```
 
 - Prefer simplified boolean expressions.
@@ -419,7 +428,7 @@ args[0] = args[1];
 args[1] = temp;
 ```
 
-- Use expression body for methods, local functions, properties, lambdas, operators and indexers when on single line.
+- Use expression body for methods, local functions, properties, lambdas, operators and indexers when possible.
 ```c#
 class Customer
 {
@@ -460,7 +469,7 @@ class Customer
 }
 ```
 
-- Never use expression body for constructors.
+- Use expression body for constructors when on single line.
 ```c#
 class Customer
 {

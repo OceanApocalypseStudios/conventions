@@ -47,6 +47,20 @@ int* A;
 int B;
 ```
 
+Project structure is defined as the following:
+
+```c
+{ProjectName}
+|- src/  // All .c, .cpp etc. files go here
+|- src/data/  // ANY type of data that is to be directly embedded into the executable
+|- include/{ProjectName}/  // All our headers go here
+|- include/{...}/  // Headers that are not ours
+|- lib/  // .a files go here
+|- lib/shared/  // .dll / .so go here. These should be copied along with the exe using whatever method available
+|- cmake/{ProjectName}/  // Any cmake modules only for our project
+|- cmake/  // Other cmake modules
+```
+
 ## TODO
 
 - [ ] Add more coding conventions

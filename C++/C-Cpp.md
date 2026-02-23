@@ -11,7 +11,7 @@ List of C/C++ conventions used at OceanApocalypseStudios.
 
 Element | Naming Convention | Example
 ------- | ----------------- | -------
-Classes and Structs | [PascalCase](https://wiki.c2.com/?PascalCase) | `class MyClass {...};`, `struct MyStruct {...};`
+Classes and Structs | [snake_case](https://stringcase.org/cases/snake/) | `class my_class {...};`, `struct my_struct {...};`
 Methods and functions | [snake_case](https://stringcase.org/cases/snake/) | `void my_func() {...}`, `void MyClass::my_method() {...}`
 Custom types (using typedef) | [snake_case](https://stringcase.org/cases/snake/) | `typedef uint unsigned int;`, `typedef void (*my_func_t)(void);`
 Macros | [CONSTANT_CASE](https://stringcase.org/cases/constant/) | `#define MY_NUM 0`, `#define MIN(a,b) (a<b)?a:b`

@@ -1,33 +1,60 @@
 # C# Conventions
 <img src="https://raw.githubusercontent.com/vscode-icons/vscode-icons/refs/heads/master/icons/file_type_csharp.svg" alt="C#" align=right width="80" />
 
-List of C# conventions used at OceanApocalypseStudios.
+List of C# conventions used at OceanApocalypseStudios. These conventions are an adaptation of [Microsoft's own coding conventions for .NET](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/).
 
 > Made by MF366.
 
 ----
 
-## .editorconfig
-In this very same directory, you'll find a ready-for-use `.editorconfig` file.
+# .editorconfig
+In this very same directory, you'll find a ready-for-use `.editorconfig` file. Keep in mind it only contains the strict rules, not the recommendations.
 
 ----
 
-## Naming
-| Element                          | Naming Convention                                                                | Example
-| -------------------------------- | -------------------------------------------------------------------------------- | -------
-| Interfaces                       | [PascalCase](https://wiki.c2.com/?PascalCase) With `I` prefix                    | `interface IMyInterface { }`
-| Classes                          | PascalCase                                                                       | `class MyClass { }`
-| Structs                          | PascalCase                                                                       | `struct MyStruct { }`
-| Enums                            | PascalCase                                                                       | `enum MyEnum { }`
-| Async Methods                    | PascalCase With `Async` suffix (suffix not mandatory on async-heavy logic)       | `async Task MyMethodAsync { }`
-| Methods, Events and Delegates    | PascalCase                                                                       | `void HelloWorld() { }`
-| Properties                       | PascalCase                                                                       | `string MyProperty { get; set; }`
-| Type parameters / Generics       | PascalCase With `T` prefix (or just `T`)                                         | `void MyMethod<TMyParam>() { }`
-| Constants                        | [CONSTANT_CASE](https://stringcase.org/cases/constant/)                          | `const int MY_CONSTANT = 1;`
-| Fields, Variables and Parameters | [camelCase](https://en.wikipedia.org/wiki/Camel_case)                            | `int myInteger;`
-| Namespaces                       | PascalCase                                                                       | `namespace MyProject.MyNamespace { }`
-| Attributes (inheriting from one) | PascalCase With Optional `Attribute` suffix                                      | `class MyAttribute : Attribute`
-| Filenames (optional)             | PascalCase (if C#, asset or configuration file)                                  | `MyAwesomeFile.cs` or `MyImage.png` or `MyConfig.json` or `not_a_csharp_file.py`
+# Naming
+> _Following a consistent set of naming conventions in developing a framework can be a major contribution to the framework’s usability. It allows the framework to be used by many developers on widely separated projects. Beyond consistency of form, the names of framework elements must be easily understood and convey each element's function._
+> 
+> \- Microsoft
+
+## Capitalization
+When writing C#, we only apply [**PascalCase**](https://wiki.c2.com/?PascalCase) and [**camelCase**](https://en.wikipedia.org/wiki/Camel_case). Previously, we applied [**CONSTANT_CASE**](https://stringcase.org/cases/constant/) for private constants, but we no longer do so, and are renaming type members that previously followed this capitalization.
+
+### When to apply each capitalization
+* **DO** use PascalCase for namespaces, types and the following members: methods, properties, types, events and enum values.
+* **DO** use camelCase for parameters, variables and non-constant fields.
+
+* **NEVER** prefix names with non-alphanumeric characters (this includes common patterns like `_privateField` that are strictly forbidden by this guideline), **UNLESS** the names are for a testing method
+* **DO** use the `ShortClassName_Method_TestSubject` rule for naming test methods (e.g.: `Service_Save_ThrowsWhenNull`, `Terminal_ToggleInvisibleText_PrintsStringsStill` or `Cache_Init_ThrowsOnSizeExceeded`).
+
+### Case-sensitivity
+> [!NOTE]
+> This only applies if your code is supposed to be executed from other .NET languages that are not C#.
+
+Even though C# is a case-sensitive language, other .NET languages, such as Visual Basic (VB.NET), are case-insensitive, meaning names **SHOULD NOT** differ only by case on shared assemblies.
+
+> E.g.: `currentFile` and `CurrentFile` differ only by case, meaning they are not good choices for names on shared assemblies; better choices would be `currentFile` and `OpenedFile` or `curFile` and `CurrentFile`.
+
+### Compound words and Common terms
+Same as [Microsoft's guideline](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions#capitalizing-compound-words-and-common-terms), with the following addition:
+* **DO** use words such as `If`, `When` and `On` when naming occurences that should be triggered by a given element (e.g.: `ThrowIfNull`, `StopWhenSizeLimitReached`, `CloseOnSave`). Additionally, the `On` pattern should be a programmer's best friend when naming events (e.g.: `OnClick`, `OnSave`, `OnEdit`, `OnSizeChanged`, `OnColorChanged`, etc).
+* When using a name that refers to C#, **DO** write it as `CSharp` or `cSharp` (whether it's PascalCase or camelCase) **UNLESS** it's in comments (where you should always prefer `C#`) or strings.
+
+### Word Choice
+* **DO** favor readability, even if it leads to longer names. E.g.: choose `SecondaryViewport` over `ViewportSecondary` and `SecVPort`.
+* **DO NOT** apply Hungarian notation (`iCount`, `szName` and `fnMyFunction` are all examples of forbidden names).
+* **AVOID** using identifiers that conflict with C#'s keywords and reserved names. If it's of utmost necessity, you may use those identifiers, as long as you use the `@` escape character.
+
+### Abbreviations and Acronyms
+* **KEEP** abbreviations, contractions and acronyms to a minimum. E.g.: order of preference should be `CloseMainWindow` > `CloseMainWin` > `CloseMW`.
+* **AVOID** acronyms that are niche or not widely accepted.
+
+### Prefixes and Suffixes
+> [!NOTE]
+> This does not apply to unit tests.
+
+* **DO** use the `Async` suffix if it's necessary to distinguish from non-async methods. E.g.: inside a class that has a `Save` method, it might be a good idea to name the async version of that method `SaveAsync`.
+* When dealing with async-heavy context (e.g.: almost every method is async), the rule above **SHOULD** be broken, for the sake of readability.
 
 ----
 

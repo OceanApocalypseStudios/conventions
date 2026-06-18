@@ -54,7 +54,7 @@ Same as [Microsoft's guideline](https://learn.microsoft.com/en-us/dotnet/standar
 > This does not apply to unit tests.
 
 * **DO** use the `Async` suffix if it's necessary to distinguish from non-async methods. E.g.: inside a class that has a `Save` method, it might be a good idea to name the async version of that method `SaveAsync`.
-* When dealing with async-heavy context (e.g.: almost every method is async), the rule above **SHOULD** be broken, for the sake of readability.
+* When dealing with async-heavy context (e.g.: almost every method is async) or test methods, the rule above **SHOULD** be broken, for the sake of readability.
 * **DO NOT** use the `Ex` suffix or similar suffixes to indicate components of previous API versions.
 * **DO NOT** use your project's name as a prefix or suffix (e.g.: `MyAwesomeTextEditorSettingsService`). Instead, use namespaces.
 

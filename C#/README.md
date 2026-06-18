@@ -25,7 +25,7 @@ When writing C#, we only apply [**PascalCase**](https://wiki.c2.com/?PascalCase)
 * **DO** use camelCase for parameters, variables and non-constant fields.
 
 * **NEVER** prefix names with non-alphanumeric characters (this includes common patterns like `_privateField` that are strictly forbidden by this guideline), **UNLESS** the names are for a testing method
-* **DO** use the `ShortClassName_Method_TestSubject` rule for naming test methods (e.g.: `Service_Save_ThrowsWhenNull`, `Terminal_ToggleInvisibleText_PrintsStringsStill` or `Cache_Init_ThrowsOnSizeExceeded`).
+* **DO** use the `ShortClassName_Method_TestSubject` rule for naming test methods (e.g.: `Service_Save_ThrowsWhenNull`, `Terminal_ToggleInvisibleText_PrintsStringsStill` or `Cache_Init_ThrowsOnSizeExceeded`). If the method's main functionality is what is being tested, however, it's prefered to use `ShortClassName_Method` for simplicity (e.g.: `Cache_Clear` instead of `Cache_Clear_ClearsCache`).
 
 ### Case-sensitivity
 > [!NOTE]
@@ -60,6 +60,11 @@ Same as [Microsoft's guideline](https://learn.microsoft.com/en-us/dotnet/standar
 
 ### Namespaces
 * **ALWAYS** respect file hierarchy when naming namespaces (e.g.: a file located in `src/MyProject/Services/Settings/JsonSettingsService.cs` that belongs to solution `MySolution` should **strictly** have namespace `MySolution.MyProject.Services.Settings`).
+* **ALL** official OceanApocalypseStudios must have the `OceanApocalypseStudios.` namespace prefix (reserved at NuGet). 
+
+### Assemblies and DLLs
+* **DO** follow namespace structure when naming assemblies (e.g: a project with namespaces `OceanApocalypseStudios.Project.FeatureGroup1` and `OceanApocalypseStudios.Project.FeatureGroup2` should have its assembly named `OceanApocalypseStudios.Project.dll`).
+* **DO** name DLLs with the company name (in this case, `OceanApocalypseStudios.<Component>.dll`).
 
 ----
 
